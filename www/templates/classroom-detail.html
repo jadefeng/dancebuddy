@@ -8,17 +8,24 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <!-- TODO : option for editing class -->
-        <ion-option-button class="button-energized" ng-click="editLesson(lesson)">
+        <ion-option-button class="button-energized crud-button" ng-click="editLesson(lesson)">
           Edit
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="removeLesson(lesson)">
+        <ion-option-button class="button-assertive crud-button" ng-click="removeLesson(lesson)">
           Delete
         </ion-option-button>
 
       </ion-item>
     </ion-list>
 
-
+      <ion-item class="item-remove-animate item-avatar" type="item-text-wrap">
+      <h2>Create New</h2>
+        <div class="list list-inline">
+          <label class="item item-input">
+            <input type="text" placeholder="Lesson Name">
+          </label>
+        </div>      
+      </ion-item>
 
   </ion-content>
 </ion-view>

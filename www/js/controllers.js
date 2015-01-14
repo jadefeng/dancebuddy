@@ -17,6 +17,13 @@ angular.module('starter.controllers', [])
       console.log('passed the code');
     }
   };
+  $scope.editLesson = function(lesson) {
+    // Code to edit the lesson 
+  };
+  $scope.deleteLesson = function(lesson) {
+    // Remove the lesson from the page
+    
+  };
 })
 
 .controller('LessonDetailCtrl', function($scope, $stateParams, Classrooms){
