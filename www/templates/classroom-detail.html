@@ -1,7 +1,15 @@
 
 <ion-view view-title="{{classroom.name}}">
-  <ion-content>
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
 
+    <ion-nav-buttons side="right"> <!-- right -->
+      <button class="button button-icon icon ion-plus"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  
+  <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="lesson in classroom.lessons" type="item-text-wrap" href="#/tab/classroom-lesson/{{classroom.id}}/{{lesson.id}}"> <!-- /{{lesson.id}} -->
         <h2>{{lesson.name}}</h2>
