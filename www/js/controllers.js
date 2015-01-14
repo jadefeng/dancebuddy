@@ -1,5 +1,5 @@
 
-angular.module('starter.controllers', ['ngSanitize'])
+angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -43,7 +43,7 @@ angular.module('starter.controllers', ['ngSanitize'])
   // debugger;
   $scope.entry = $scope.lesson.entries.filter(checkEntry)[0];
   console.log($scope.entry);
-  $scope.videoUrl =  $sce.getTrustedResourceUrl('//player.vimeo.com/video/' + $scope.entry.videoId);
+  $scope.videoUrl =  '//player.vimeo.com/video/' + $scope.entry.videoId;
 })
 
 .controller('FriendsCtrl', function($scope, Friends) {
