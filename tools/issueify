@@ -1,0 +1,60 @@
+#!/bin/bash
+#
+# Turns the most recent commit into a codereview issue, and amends it
+# to place the review link into the commit message. If there is already
+# a link present, then it will be reused and the patch will be uploaded
+# against the existing review. This is useful when addressing comments
+# by amending the commit.
+#
+# Cool use case involves doing an interactive rebase to squash review
+# comment addressing commits against their appropriate commits in the
+# history and redoing the review.
+#
+# Extra arguments are passed through to tools/request_codereview.py
+
+cd "`dirname $0`/.."
+
+REV=HEAD
+MSG="`tools/commit-message %s $REV`"
+DESC_FILE=/tmp/desc.$$
+UPLOAD_LOG=/tmp/upload_log.$$
+tools/commit-message %b $REV > $DESC_FILE
+
+ID=`grep 'http://codereview.helixta.com.au/' $DESC_FILE | sed 's/[^0-9]//g' | head -1`
+ISSUE_ARG=
+if [ "$ID" ]; then
+  ISSUE_ARG="-i $ID"
+fi
+
+function postReview() {
+  OS=`uname -s`
+  if [ "$OS" == "Darwin" ]; then
+    script -q -t 0 $UPLOAD_LOG tools/request_codereview.py "$@"
+  else
+    which unbuffer > /dev/null
+    if [ ! "$?" ]; then
+      echo "Install unbuffer (apt-get install expect-dev) and re-run"
+      exit 1
+    fi
+    unbuffer tools/request_codereview.py "$@" | tee $UPLOAD_LOG
+  fi
+}
+postReview $ISSUE_ARG -m "$MSG" -f $DESC_FILE -y --rev=$REV^ "$@"
+URL=`cat $UPLOAD_LOG | grep '^Issue created.' | sed 's|.*URL: ||'`
+
+if [ "$ID" ]; then
+  echo "$MSG"
+  echo "AMMENDED: http://codereview.helixta.com.au/$ID"
+  echo
+else
+  echo "NEW: $URL"
+  echo
+  ID=`echo "$URL" | sed 's|.*/||'`
+  git commit -q --amend -m "$MSG
+
+`cat $DESC_FILE`
+
+http://codereview.helixta.com.au/$ID"
+fi
+
+rm $DESC_FILE $UPLOAD_LOG

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Spits out commit info without the diff.
+# Basically a thin wrapper around git-show that strips out the diff part.
+#
+# usage: commit-message FORMAT REV
+
+# sed1: remove diff
+# sed2: remove trailing blank lines
+git show --format=$1 $2 | sed '/^diff --git/,$d' | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba' 
