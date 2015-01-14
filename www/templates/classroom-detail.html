@@ -5,10 +5,11 @@
     </ion-nav-back-button>
 
     <ion-nav-buttons side="right"> <!-- right -->
-      <a href="#/tab/classrooms" class="add-button"><i class="icon icon ion-plus"></i></a>
+      <a href="#/tab/classrooms" class="header-button"><i class="icon ion-home"></i></a>
+      <a class="header-button"><i class="icon icon ion-plus"></i></a>
     </ion-nav-buttons>
   </ion-nav-bar>
-    
+
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="lesson in classroom.lessons" type="item-text-wrap" href="#/tab/classroom-lesson/{{classroom.id}}/{{lesson.id}}"> <!-- /{{lesson.id}} -->

@@ -1,0 +1,19 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">New Classroom</h1>
+
+    <a ng-click='closeModal()' class="header-button"><i class="icon ion-close-round"></i></a>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+        <div class="list list-inline">
+          <label class="item item-input">
+            <input type="text" name="className" placeholder="Class Name">
+          </label>
+          <label class="item item-input">
+            <input type="text" name="secretKey" placeholder="Secret Key">
+          </label>
+        </div>  
+        <button class="button button-block button-positive" ng-click="createNewClassroom(className, secretKey)">Create Classroom</button>
+  </ion-content>
+</ion-modal-view>
