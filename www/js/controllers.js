@@ -1,10 +1,21 @@
-
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ClassroomsCtrl', function($scope, Classrooms) {
+.controller('ClassroomsCtrl', function($scope, $ionicModal, Classrooms) {
   $scope.classrooms = Classrooms.all();
+  $ionicModal.fromTemplateUrl('templates/classroom-new.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
 })
 
 .controller('ClassroomDetailCtrl', function($scope, $stateParams, Classrooms) {
