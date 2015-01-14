@@ -100,34 +100,60 @@ angular.module('starter.services', [])
 .factory('Classrooms', function() {
   var classrooms = [{
     id: 0,
-    name: 'Ballet Grade 1',
+    name: 'Ballet Class 1',
     secret: 'teapot',
     face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png',
-    lessons: [ {name: 'Intro Class'}, {name: 'Second Lesson'}],
+    lessons: [ {
+      id: 0, 
+      name: 'Intro Class',
+      entries: [{
+        id: 0,
+        title: 'Intro and Ranks',
+        videoId: '7981936', 
+        note: 'About Intro and Ranks of ballet',
+      }, {
+        id: 1,
+        title: 'Corps',
+        videoId: '58291553', 
+        note: 'About the Corps de Ballet',
+      }],
+    }, {
+      id: 1, 
+      name: 'First Lesson',
+      entries: [{
+          id: 0,
+          videoId: 'https://vimeo.com/7981936', 
+          note: 'Intro and Ranks'
+        }, {
+          id: 1,
+          videoId: 'https://vimeo.com/58291553', 
+          note: 'Corps'
+      }]
+    }],
   }, {
     id: 1,
-    name: 'Ballet Grade 2',
+    name: 'Ballet Class 2',
     secret: 'teapot',
     face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png',
-    lessons: [ {name: 'Intro Class'}, {name: 'Second Lesson'}],
+    lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }, {
     id: 2,
-    name: 'Ballet Grade 3',
+    name: 'Ballet Class 3',
     secret: 'teapot',
     face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png'    ,
-    lessons: [ {name: 'Intro Class'}, {name: 'Second Lesson'}],
+    lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }, {
     id: 3,
-    name: 'Ballet Grade 4',
+    name: 'Ballet Class 4',
     secret: 'teapot',
     face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png',
-    lessons: [ {name: 'Intro Class'}, {name: 'Second Lesson'}],
+    lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }, {
     id: 4,
-    name: 'Ballet Grade 5',
+    name: 'Ballet Class 5',
     secret: 'teapot',
     face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png'    ,
-    lessons: [ {name: 'Intro Class'}, {name: 'Second Lesson'}],
+    lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }];
 
   return {

@@ -1,5 +1,5 @@
 
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngSanitize'])
 
 .controller('DashCtrl', function($scope) {})
 
@@ -10,24 +10,40 @@ angular.module('starter.controllers', [])
 .controller('ClassroomDetailCtrl', function($scope, $stateParams, Classrooms) {
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   $scope.askPassword = false; //true;
+  // Code to check for secret passkey
   $scope.submitCode = function(secret) {
     if (secret == $scope.classroom.secret) {
       $scope.askPassword = false;
       console.log('passed the code');
     }
   };
-
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+.controller('LessonDetailCtrl', function($scope, $stateParams, Classrooms){
+  $scope.classroom = Classrooms.get($stateParams.classroomId);
+  function checkLesson(lesson) {
+    // $stateParams.lessonId is a string, not a num
+    return lesson.id == $stateParams.lessonId;
   }
+  $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('EntryDetailCtrl', function($scope, $stateParams, Classrooms, $sce) {
+  console.log($stateParams);
+  $scope.classroom = Classrooms.get($stateParams.classroomId);
+  function checkLesson(lesson) {
+    // $stateParams.lessonId is a string, not a num
+    return lesson.id == $stateParams.lessonId;
+  }
+  $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
+  function checkEntry(entry) { 
+    console.log(entry);
+    return entry.id == $stateParams.entryId;
+  }
+  // debugger;
+  $scope.entry = $scope.lesson.entries.filter(checkEntry)[0];
+  console.log($scope.entry);
+  $scope.videoUrl =  $sce.getTrustedResourceUrl('//player.vimeo.com/video/' + $scope.entry.videoId);
 })
 
 .controller('FriendsCtrl', function($scope, Friends) {

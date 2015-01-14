@@ -95,6 +95,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'ClassroomsCtrl'
         }
       }
+    })
+    .state('tab.lesson-detail', {
+      url: '/classroom-lesson/:classroomId/:lessonId',
+      views: {
+        'tab-classrooms': {
+          templateUrl: 'templates/lesson-detail.html',
+          controller: 'LessonDetailCtrl'
+        }
+      }
+    })
+    .state('tab.entry-detail', {
+      url: '/lesson-entry/:classroomId/:lessonId/:entryId',
+      views: {
+        'tab-classrooms': {
+          templateUrl: 'templates/entry-detail.html',
+          controller: 'EntryDetailCtrl'
+        }
+      }
     });
 
   // if none of the above states are matched, use this as the fallback
