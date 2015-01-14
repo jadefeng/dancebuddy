@@ -35,7 +35,7 @@ angular.module('starter.controllers', [])
   $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
 })
 
-.controller('EntryDetailCtrl', function($scope, $stateParams, Classrooms, $sce) {
+.controller('EntryDetailCtrl', function($scope, $stateParams, Classrooms) {
   console.log($stateParams);
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   function checkLesson(lesson) {
@@ -49,8 +49,6 @@ angular.module('starter.controllers', [])
   }
   // debugger;
   $scope.entry = $scope.lesson.entries.filter(checkEntry)[0];
-  console.log($scope.entry);
-  $scope.videoUrl =  '//player.vimeo.com/video/' + $scope.entry.videoId;
 })
 
 .controller('FriendsCtrl', function($scope, Friends) {

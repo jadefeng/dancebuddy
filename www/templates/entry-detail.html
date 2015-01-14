@@ -1,10 +1,10 @@
 
 <ion-view view-title="{{entry.title}}">
-  <ion-content class="padding">
-  <iframe ng-src='//player.vimeo.com/video/7981936'
+  <ion-content>
+  <iframe ng-src="{{'http://player.vimeo.com/video/' + entry.videoId}}"
    style="width:100vw; height:70vw"
    frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  
-  <h3>{{entry.note}}</h3>
+  <h3 class="padding">{{entry.note}}</h3>
 
   </ion-content>
 </ion-view>
