@@ -97,8 +97,8 @@ angular.module('starter.services', [])
 })
 
 // Test Data for classes
-.factory('Classes', function() {
-  var classes = [{
+.factory('Classrooms', function() {
+  var classrooms = [{
     id: 0,
     name: 'Ballet Grade 1',
     secret: 'teapot',
@@ -132,10 +132,10 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return classes;
+      return classrooms;
     },
-    get: function(classID) {
-      return classes[classID];
+    get: function(classroomID) {
+      return classrooms[classroomID];
     }
   }
 });

@@ -3,15 +3,15 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ClassesCtrl', function($scope, Classes) {
-  $scope.classes = Classes.all();
+.controller('ClassroomsCtrl', function($scope, Classrooms) {
+  $scope.classrooms = Classrooms.all();
 })
 
-.controller('ClassDetailCtrl', function($scope, $stateParams, Classes) {
-  $scope.class = Classes.get($stateParams.classId);
-  $scope.askPassword = true;
+.controller('ClassroomDetailCtrl', function($scope, $stateParams, Classrooms) {
+  $scope.classroom = Classrooms.get($stateParams.classroomId);
+  $scope.askPassword = false; //true;
   $scope.submitCode = function(secret) {
-    if (secret == $scope.class.secret) {
+    if (secret == $scope.classroom.secret) {
       $scope.askPassword = false;
       console.log('passed the code');
     }

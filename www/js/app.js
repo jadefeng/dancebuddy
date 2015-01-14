@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-  
+
   .state('tab.friends', {
       url: '/friends',
       views: {
@@ -78,21 +78,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   // This is where the classes tabs comes in
-    .state('tab.classes', {
-      url: '/classes',
+    .state('tab.classroom-detail', {
+      url: '/classroom/:classroomId',
       views: {
-        'tab-classes': {
-          templateUrl: 'templates/tab-classes.html',
-          controller: 'ClassesCtrl'
+        'tab-classrooms': {
+          templateUrl: 'templates/classroom-detail.html',
+          controller: 'ClassroomDetailCtrl'
         }
       }
     })
-    .state('tab.class-detail', {
-      url: '/classes/:classId',
+    .state('tab.classrooms', {
+      url: '/classrooms',
       views: {
-        'tab-classes': {
-          templateUrl: 'templates/class-detail.html',
-          controller: 'ClassDetailCtrl'
+        'tab-classrooms': {
+          templateUrl: 'templates/tab-classrooms.html',
+          controller: 'ClassroomsCtrl'
         }
       }
     });

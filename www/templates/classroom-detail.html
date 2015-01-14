@@ -4,16 +4,16 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{class.name}}">
+<ion-view view-title="{{classroom.name}}">
   <ion-content class="padding">
-    <h1>{{class.name}}</h1>
+    <h1>{{classroom.name}}</h1>
     <div class="password" ng-show='askPassword'>
       <h3>What is the secret passcode?</h3>
       <input type="text" name="secretCode" ng-model="secret">
       <button ng-click='submitCode(secret)'>Submit</button>
     </div>
 
-    <div class="lessons" ng-repeat='lesson in class.lessons' ng-hide='askPassword'>
+    <div class="lessons" ng-repeat='lesson in classroom.lessons' ng-hide='askPassword'>
       <h3>{{lesson.name}}</h3>
     </div>
 
