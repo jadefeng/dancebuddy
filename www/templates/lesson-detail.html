@@ -1,5 +1,13 @@
-
 <ion-view view-title="{{lesson.name}}">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+
+    <ion-nav-buttons side="right"> <!-- right -->
+      <button class="button button-icon icon ion-plus"></button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="entry in lesson.entries" type="item-text-wrap" href="#/tab/lesson-entry/{{classroom.id}}/{{lesson.id}}/{{entry.id}}"> 

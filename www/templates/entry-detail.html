@@ -1,5 +1,9 @@
-
 <ion-view view-title="{{entry.title}}">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
   <ion-content>
   <iframe ng-src="{{'http://player.vimeo.com/video/' + entry.videoId}}"
    style="width:100vw; height:70vw"
