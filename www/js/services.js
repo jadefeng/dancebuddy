@@ -2,8 +2,16 @@ angular.module('starter.services', [])
 
 
 // Test Data for classes
-.factory('Classrooms', function() {
-  var classrooms = [{
+.factory('Classrooms', function($rootScope) {
+  $rootScope.$watch('classrooms', function(classrooms) {
+    console.log('classrooms changed');
+    window.localStorage.classroomsJSON = angular.toJson(classrooms);
+  }, true);
+
+  var classroomsJSON = window.localStorage.classroomsJSON;
+
+  var classrooms = $rootScope.classrooms = classroomsJSON ?
+    JSON.parse(classroomsJSON) : [{
     id: 0,
     name: 'Ballet Class 1',
     secret: 'teapot',
