@@ -11,36 +11,8 @@ angular.module('starter.controllers', ['ionic'])
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
+    enhanceModal(modal, 'Classroom', nextIdCount, $scope.classrooms, $ionicListDelegate);
     $scope.modal = modal;
-
-    modal.close = function close() {
-      modal.hide();
-      delete modal.target;
-      $ionicListDelegate.closeOptionButtons();
-    }
-
-    modal.edit = function edit(classroom) {
-      modal.target = angular.copy(classroom);
-      modal.original = classroom; // need the original later.
-      modal.show();
-      modal.title = (classroom.id ? 'Edit' : 'New') + ' Classroom';
-    }
-
-    modal.create = function create() {
-      modal.edit({});
-    }
-
-    modal.submit = function submit() {
-      if (modal.target.id) {
-        for (key in modal.target) {
-          modal.original[key] = modal.target[key];
-        }
-      } else {
-        modal.target.id = nextIdCount++;
-        $scope.classrooms.unshift(modal.target);
-      }
-      modal.close();
-    };
   });
 
   // Delete a classroom
@@ -138,3 +110,35 @@ angular.module('starter.controllers', ['ionic'])
     enableFriends: true
   };
 });
+
+function enhanceModal(modal, entityName, nextId, entities, $ionicListDelegate) {
+  modal.close = function close() {
+    modal.hide();
+    delete modal.target;
+    $ionicListDelegate.closeOptionButtons();
+  };
+
+  modal.edit = function edit(entity) {
+    modal.target = angular.copy(entity);
+    modal.original = entity; // need the original later.
+    modal.show();
+    modal.title = (entity.id ? 'Edit' : 'New') + ' ' + entityName;
+  };
+
+  modal.create = function create() {
+    modal.edit({});
+  };
+
+  modal.submit = function submit() {
+    if (modal.target.id) {
+      for (key in modal.target) {
+        modal.original[key] = modal.target[key];
+      }
+    } else {
+      modal.target.id = nextId++;
+      entities.unshift(modal.target);
+    }
+    modal.close();
+  };
+}
+
