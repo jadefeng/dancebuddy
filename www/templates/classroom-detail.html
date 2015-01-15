@@ -6,7 +6,7 @@
 
     <ion-nav-buttons side="right"> <!-- right -->
       <a href="#/tab/classrooms" class="header-button"><i class="icon ion-home"></i></a>
-      <a class="header-button" ng-click='openModal()'><i class="icon icon ion-plus"></i></a>
+      <a class="header-button" ng-click='modal.create()'><i class="icon icon ion-plus"></i></a>
     </ion-nav-buttons>
   </ion-nav-bar>
 
@@ -16,10 +16,10 @@
         <h2>{{lesson.name}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-energized crud-button" ng-click="editLesson(lesson)">
+        <ion-option-button class="button-energized crud-button" ng-click="modal.edit(lesson)">
           Edit
         </ion-option-button>
-        <ion-option-button class="button-assertive crud-button" ng-click="removeLesson(lesson)">
+        <ion-option-button class="button-assertive crud-button" ng-click="modal.remove(lesson)">
           Delete
         </ion-option-button>
 

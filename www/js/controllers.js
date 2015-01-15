@@ -3,56 +3,25 @@ angular.module('starter.controllers', ['ionic'])
 .controller('DashCtrl', function($scope) {})
 
 .controller('ClassroomsCtrl', function($scope, $ionicModal, $ionicListDelegate, Classrooms) {
-
   $scope.classrooms = Classrooms.all();
-  var nextIdCount = $scope.classrooms.length;
-
   $ionicModal.fromTemplateUrl('templates/classroom-new.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    enhanceModal(modal, 'Classroom', nextIdCount, $scope.classrooms, $ionicListDelegate);
+    enhanceModal(modal, 'Classroom', $scope.classrooms, $ionicListDelegate);
     $scope.modal = modal;
   });
-
-  // Delete a classroom
-  $scope.removeClassroom = function(classroom) {
-    var deleteIndex = $scope.classrooms.indexOf(classroom);
-    $scope.classrooms.splice(deleteIndex, 1);
-    $ionicListDelegate.closeOptionButtons();
-  };
 })
 
-.controller('ClassroomDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms) {
+.controller('ClassroomDetailCtrl', function($scope, $ionicModal, $ionicListDelegate, $stateParams, Classrooms) {
   $scope.classroom = Classrooms.get($stateParams.classroomId);
-  $scope.askPassword = false; //true;
-  // Code to check for secret passkey
-  $scope.submitCode = function(secret) {
-    if (secret == $scope.classroom.secret) {
-      $scope.askPassword = false;
-      console.log('passed the code');
-    }
-  };
-  $scope.editLesson = function(lesson) {
-    // Code to edit the lesson 
-  };
-  $scope.deleteLesson = function(lesson) {
-    // Remove the lesson from the page
-  };
-
-  // Create New Lesson
   $ionicModal.fromTemplateUrl('templates/lesson-new.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
+    enhanceModal(modal, 'Lesson', $scope.classroom.lessons, $ionicListDelegate);
     $scope.modal = modal;
   });
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
 })
 
 .controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms){
@@ -111,7 +80,8 @@ angular.module('starter.controllers', ['ionic'])
   };
 });
 
-function enhanceModal(modal, entityName, nextId, entities, $ionicListDelegate) {
+function enhanceModal(modal, entityName, entities, $ionicListDelegate) {
+  var nextId = entities.length;
   modal.close = function close() {
     modal.hide();
     delete modal.target;
@@ -139,6 +109,12 @@ function enhanceModal(modal, entityName, nextId, entities, $ionicListDelegate) {
       entities.unshift(modal.target);
     }
     modal.close();
+  };
+
+  modal.remove = function remove(entity) {
+    var deleteIndex = entities.indexOf(entity);
+    entities.splice(deleteIndex, 1);
+    $ionicListDelegate.closeOptionButtons();
   };
 }
 
