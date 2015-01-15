@@ -3,68 +3,52 @@ angular.module('starter.controllers', ['ionic'])
 .controller('DashCtrl', function($scope) {})
 
 .controller('ClassroomsCtrl', function($scope, $ionicModal, $ionicListDelegate, Classrooms) {
+
   $scope.classrooms = Classrooms.all();
+  var nextIdCount = $scope.classrooms.length;
+
   $ionicModal.fromTemplateUrl('templates/classroom-new.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
     $scope.modal = modal;
-  });
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-    delete $scope.classroom;
-    $ionicListDelegate.closeOptionButtons();
-  };
 
-  $scope.master = {};
-  $scope.update = function(classroom) {
-    $scope.master = angular.copy(classroom);
-  };
-  var nextIdCount = $scope.classrooms.length;
-
-  $scope.editClassroom = function(classroom) {
-    $scope.classroom = classroom;
-    $scope.openModal(classroom);
-  };
-
-  $scope.submitClassroom = function(classroom) {
-    var classrooms = $scope.classrooms;
-    if (classroom.id != null) {
-      // Editing a classroom
-      debugger;
-      classrooms.update = ({
-        id: classroom.id, 
-        name: classroom.name,
-        secret: classroom.secret,
-      });
-    } else {
-      debugger;
-      // Creating a new classroom
-      classrooms.unshift({
-        id: nextIdCount, 
-        name: classroom.name,
-        secret: classroom.secret,
-      }); 
-      nextIdCount += 1;
+    modal.close = function close() {
+      modal.hide();
+      delete modal.target;
+      $ionicListDelegate.closeOptionButtons();
     }
-    $scope.closeModal();
-  };
+
+    modal.edit = function edit(classroom) {
+      modal.target = angular.copy(classroom);
+      modal.original = classroom; // need the original later.
+      modal.show();
+      modal.title = (classroom.id ? 'Edit' : 'New') + ' Classroom';
+    }
+
+    modal.create = function create() {
+      modal.edit({});
+    }
+
+    modal.submit = function submit() {
+      if (modal.target.id) {
+        for (key in modal.target) {
+          modal.original[key] = modal.target[key];
+        }
+      } else {
+        modal.target.id = nextIdCount++;
+        $scope.classrooms.unshift(modal.target);
+      }
+      modal.close();
+    };
+  });
 
   // Delete a classroom
   $scope.removeClassroom = function(classroom) {
-    console.log(classroom);
-    console.log("going to delete", $scope.classrooms);
     var deleteIndex = $scope.classrooms.indexOf(classroom);
-    $scope.classrooms.splice(deleteIndex, deleteIndex + 1);
-    console.log("deleted", $scope.classrooms);
-    // debugger;
-    $scope.closeModal();
+    $scope.classrooms.splice(deleteIndex, 1);
+    $ionicListDelegate.closeOptionButtons();
   };
-
-
 })
 
 .controller('ClassroomDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms) {
