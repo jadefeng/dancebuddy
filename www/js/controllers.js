@@ -66,10 +66,7 @@ angular.module('starter.controllers', ['ionic'])
         var options = { 
             quality : 50, 
             destinationType : Camera.DestinationType.FILE_URI, 
-            sourceType : Camera.PictureSourceType.CAMERA, 
-            allowEdit : true,
-            targetWidth: 300,
-            targetHeight: 300,
+            sourceType : Camera.PictureSourceType.PHOTOLIBRARY, 
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false,
             mediaType: Camera.MediaType.VIDEO,
