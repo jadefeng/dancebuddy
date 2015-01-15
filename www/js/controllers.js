@@ -32,7 +32,7 @@ angular.module('starter.controllers', ['ionic'])
   }
   $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
 
-  // Create New Entry
+  // CRUD for Video entries
   $ionicModal.fromTemplateUrl('templates/entry-new.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -42,17 +42,10 @@ angular.module('starter.controllers', ['ionic'])
   });
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
-
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
-
-.controller('AccountCtrl', function($scope) {
+// Settings controller 
+.controller('SettingsCtrl', function($scope) {
   $scope.settings = {
-    enableFriends: true
+    // enableFriends: true // Leave this empty until toggles to be set up later
   };
 });
 
