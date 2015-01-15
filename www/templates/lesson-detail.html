@@ -5,20 +5,27 @@
 
     <ion-nav-buttons side="right"> <!-- right -->
       <a href="#/tab/classrooms" class="header-button"><i class="icon ion-home"></i></a>
-      <a class="header-button" ng-click='openModal()'><i class="icon ion-plus"></i></a>
+      <a class="header-button" ng-click='modal.create()'><i class="icon ion-plus"></i></a>
 
     </ion-nav-buttons>
   </ion-nav-bar>
 
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="entry in lesson.entries" type="item-text-wrap" href="#/tab/lesson-entry/{{classroom.id}}/{{lesson.id}}/{{entry.id}}"> 
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries" type="item-text-wrap"> 
         <h2>{{entry.title}}</h2>
         <p>{{entry.note}}</p>
+        <iframe ng-src="{{'http://player.vimeo.com/video/' + entry.videoId}}"
+         style="width:100%; height:70vw"
+         frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  
+
         <i class="icon ion-chevron-right icon-accessory"></i>
 
+        <ion-option-button class="button-energized crud-button"
+            ng-click="modal.edit(entry)">
+          Edit
         </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="removeLesson(lesson)">
+        <ion-option-button class="button-assertive crud-button" ng-click="modal.remove(entry)">
           Delete
         </ion-option-button>
       </ion-item>

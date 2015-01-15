@@ -24,7 +24,7 @@ angular.module('starter.controllers', ['ionic'])
   });
 })
 
-.controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms){
+.controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, $ionicListDelegate, Classrooms){
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   function checkLesson(lesson) {
     // $stateParams.lessonId is a string, not a num
@@ -37,33 +37,9 @@ angular.module('starter.controllers', ['ionic'])
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
+    enhanceModal(modal, 'Video', $scope.lesson.entries, $ionicListDelegate);
     $scope.modal = modal;
   });
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-  $scope.createNewClassroom = function(className, secretKey) {
-
-  };
-
-})
-
-.controller('EntryDetailCtrl', function($scope, $stateParams, Classrooms) {
-  console.log($stateParams);
-  $scope.classroom = Classrooms.get($stateParams.classroomId);
-  function checkLesson(lesson) {
-    // $stateParams.lessonId is a string, not a num
-    return lesson.id == $stateParams.lessonId;
-  }
-  $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
-  function checkEntry(entry) { 
-    return entry.id == $stateParams.entryId;
-  }
-  // debugger;
-  $scope.entry = $scope.lesson.entries.filter(checkEntry)[0];
 })
 
 .controller('FriendsCtrl', function($scope, Friends) {
