@@ -13,7 +13,7 @@ angular.module('starter.services', [])
       modal.target = angular.copy(entity);
       modal.original = entity; // need the original later.
       modal.show();
-      modal.title = (entity.id ? 'Edit' : 'New') + ' ' + entityName;
+      modal.title = ( angular.isDefined(entity.id) ? 'Edit' : 'New') + ' ' + entityName;
     };
 
     modal.create = function create() {
