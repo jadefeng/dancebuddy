@@ -53,7 +53,7 @@ angular.module('starter.controllers', ['ionic'])
             targetWidth: 300,
             targetHeight: 300,
             popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
+            saveToPhotoAlbum: false,
         };
  
         $cordovaCamera.getPicture(options).then(function(imageData) {
@@ -62,6 +62,25 @@ angular.module('starter.controllers', ['ionic'])
             // An error occured. Show a message to the user
         });
   }
+  $scope.takeVideo = function() {
+        var options = { 
+            quality : 50, 
+            destinationType : Camera.DestinationType.FILE_URI, 
+            sourceType : Camera.PictureSourceType.CAMERA, 
+            allowEdit : true,
+            targetWidth: 300,
+            targetHeight: 300,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false,
+            mediaType: Camera.MediaType.VIDEO,
+        };
+ 
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            $scope.imgURI = imageData; //"data:image/jpeg;base64," + imageData;
+        }, function(err) {
+            // An error occured. Show a message to the user
+        });
+  }  
 })
 
 // Settings controller 
