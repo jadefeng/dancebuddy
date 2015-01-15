@@ -6,14 +6,15 @@
   </ion-header-bar>
 
   <ion-content class="padding">
+
         <div class="list list-inline">
           <label class="item item-input">
-            <input type="text" ng-model="className" placeholder="Class Name">
+            <input type="text" ng-model="classroom.name" value="classroom.name" placeholder="Class Name">
           </label>
           <label class="item item-input">
-            <input type="text" ng-model="secretKey" placeholder="Secret Key">
+            <input type="text" ng-model="classroom.secret" value="classroom.secret" placeholder="Secret Key">
           </label>
         </div>  
-        <button class="button button-block button-positive" ng-click="createNewClassroom(className, secretKey)">Create Classroom</button>
+        <button class="button button-block button-positive" ng-click="submitClassroom(classroom)">Submit Classroom</button>
   </ion-content>
 </ion-modal-view>

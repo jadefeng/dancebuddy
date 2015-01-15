@@ -150,13 +150,17 @@ angular.module('starter.services', [])
     secret: 'teapot',
     lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }];
-
+  
   return {
     all: function() {
       return classrooms;
     },
     get: function(classroomID) {
-      return classrooms[classroomID];
+      function filterFn(classroom) {
+        return classroom.id == classroomID;    
+      }
+      var result = classrooms.filter(filterFn);
+      return result[0];
     }
   }
 });

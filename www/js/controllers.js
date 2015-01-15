@@ -2,7 +2,7 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope) {})
 
-.controller('ClassroomsCtrl', function($scope, $ionicModal, Classrooms) {
+.controller('ClassroomsCtrl', function($scope, $ionicModal, $ionicListDelegate, Classrooms) {
   $scope.classrooms = Classrooms.all();
   $ionicModal.fromTemplateUrl('templates/classroom-new.html', {
     scope: $scope,
@@ -15,17 +15,56 @@ angular.module('starter.controllers', ['ionic'])
   };
   $scope.closeModal = function() {
     $scope.modal.hide();
+    delete $scope.classroom;
+    $ionicListDelegate.closeOptionButtons();
   };
 
-  $scope.createNewClassroom = function(className, secretKey) {
+  $scope.master = {};
+  $scope.update = function(classroom) {
+    $scope.master = angular.copy(classroom);
+  };
+  var nextIdCount = $scope.classrooms.length;
+
+  $scope.editClassroom = function(classroom) {
+    $scope.classroom = classroom;
+    $scope.openModal(classroom);
+  };
+
+  $scope.submitClassroom = function(classroom) {
     var classrooms = $scope.classrooms;
-    classrooms.unshift({
-      id: classrooms.length, 
-      name: className,
-      secret: secretKey,
-    });
+    if (classroom.id != null) {
+      // Editing a classroom
+      debugger;
+      classrooms.update = ({
+        id: classroom.id, 
+        name: classroom.name,
+        secret: classroom.secret,
+      });
+    } else {
+      debugger;
+      // Creating a new classroom
+      classrooms.unshift({
+        id: nextIdCount, 
+        name: classroom.name,
+        secret: classroom.secret,
+      }); 
+      nextIdCount += 1;
+    }
     $scope.closeModal();
   };
+
+  // Delete a classroom
+  $scope.removeClassroom = function(classroom) {
+    console.log(classroom);
+    console.log("going to delete", $scope.classrooms);
+    var deleteIndex = $scope.classrooms.indexOf(classroom);
+    $scope.classrooms.splice(deleteIndex, deleteIndex + 1);
+    console.log("deleted", $scope.classrooms);
+    // debugger;
+    $scope.closeModal();
+  };
+
+
 })
 
 .controller('ClassroomDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms) {
@@ -96,7 +135,6 @@ angular.module('starter.controllers', ['ionic'])
   }
   $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
   function checkEntry(entry) { 
-    console.log(entry);
     return entry.id == $stateParams.entryId;
   }
   // debugger;
