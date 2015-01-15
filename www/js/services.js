@@ -42,8 +42,7 @@ angular.module('starter.services', [])
 
 // Test Data for classes
 .factory('Classrooms', function($rootScope) {
-  $rootScope.$watch('classrooms', function(classrooms) {
-    console.log('classrooms changed');
+  $rootScope.$watch('classrooms', function saveClassroomData(classrooms) {
     window.localStorage.classroomsJSON = angular.toJson(classrooms);
   }, true);
 
