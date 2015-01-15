@@ -6,7 +6,7 @@
 
     <ion-nav-buttons side="right"> <!-- right -->
       <a href="#/tab/classrooms" class="header-button"><i class="icon ion-home"></i></a>
-      <a class="header-button"><i class="icon icon ion-plus"></i></a>
+      <a class="header-button" ng-click='openModal()'><i class="icon icon ion-plus"></i></a>
     </ion-nav-buttons>
   </ion-nav-bar>
 
@@ -25,16 +25,6 @@
         </ion-option-button>
 
       </ion-item>
-    </ion-list>
-
-      <ion-item class="item-remove-animate item-avatar" type="item-text-wrap">
-      <h2>Create New</h2>
-        <div class="list list-inline">
-          <label class="item item-input">
-            <input type="text" placeholder="Lesson Name">
-          </label>
-        </div>      
-      </ion-item>
-
+    
   </ion-content>
 </ion-view>

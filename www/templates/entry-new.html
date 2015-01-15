@@ -1,0 +1,23 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">New Entry</h1>
+
+    <a ng-click='closeModal()' class="header-button"><i class="icon ion-close-round"></i></a>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+        <div class="list list-inline">
+          <label class="item item-input">
+            <input type="text" name="title" placeholder="Entry Title">
+          </label>
+          <label class="item item-input">
+            <input type="text" name="videoUrl" placeholder="Vimeo Video URL">
+          </label>
+          <label class="item item-input">
+            <textarea name="comments" placeholder="Comments"></textarea>
+          </label>
+
+        </div>  
+        <button class="button button-block button-positive" ng-click="createNewEntry(title, videoUrl, comments)">Create Entry</button>
+  </ion-content>
+</ion-modal-view>

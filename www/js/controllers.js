@@ -16,9 +16,19 @@ angular.module('starter.controllers', ['ionic'])
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
+
+  $scope.createNewClassroom = function(className, secretKey) {
+    var classrooms = $scope.classrooms;
+    classrooms.unshift({
+      id: classrooms.length, 
+      name: className,
+      secret: secretKey,
+    });
+    $scope.closeModal();
+  };
 })
 
-.controller('ClassroomDetailCtrl', function($scope, $stateParams, Classrooms) {
+.controller('ClassroomDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms) {
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   $scope.askPassword = false; //true;
   // Code to check for secret passkey
@@ -33,17 +43,48 @@ angular.module('starter.controllers', ['ionic'])
   };
   $scope.deleteLesson = function(lesson) {
     // Remove the lesson from the page
-    
+  };
+
+  // Create New Lesson
+  $ionicModal.fromTemplateUrl('templates/lesson-new.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
   };
 })
 
-.controller('LessonDetailCtrl', function($scope, $stateParams, Classrooms){
+.controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, Classrooms){
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   function checkLesson(lesson) {
     // $stateParams.lessonId is a string, not a num
     return lesson.id == $stateParams.lessonId;
   }
   $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
+
+  // Create New Entry
+  $ionicModal.fromTemplateUrl('templates/entry-new.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  $scope.createNewClassroom = function(className, secretKey) {
+
+  };
+
 })
 
 .controller('EntryDetailCtrl', function($scope, $stateParams, Classrooms) {

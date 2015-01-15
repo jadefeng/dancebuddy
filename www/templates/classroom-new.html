@@ -8,10 +8,10 @@
   <ion-content class="padding">
         <div class="list list-inline">
           <label class="item item-input">
-            <input type="text" name="className" placeholder="Class Name">
+            <input type="text" ng-model="className" placeholder="Class Name">
           </label>
           <label class="item item-input">
-            <input type="text" name="secretKey" placeholder="Secret Key">
+            <input type="text" ng-model="secretKey" placeholder="Secret Key">
           </label>
         </div>  
         <button class="button button-block button-positive" ng-click="createNewClassroom(className, secretKey)">Create Classroom</button>

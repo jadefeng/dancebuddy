@@ -102,7 +102,6 @@ angular.module('starter.services', [])
     id: 0,
     name: 'Ballet Class 1',
     secret: 'teapot',
-    face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png',
     lessons: [ {
       id: 0, 
       name: 'Intro Class',
@@ -134,25 +133,21 @@ angular.module('starter.services', [])
     id: 1,
     name: 'Ballet Class 2',
     secret: 'teapot',
-    face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png',
     lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }, {
     id: 2,
     name: 'Ballet Class 3',
     secret: 'teapot',
-    face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png'    ,
     lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }, {
     id: 3,
     name: 'Ballet Class 4',
     secret: 'teapot',
-    face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png',
     lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }, {
     id: 4,
     name: 'Ballet Class 5',
     secret: 'teapot',
-    face: 'http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png'    ,
     lessons: [ {id: 0, name: 'Intro Class'}, {id: 1, name: 'Second Lesson'}],
   }];
 

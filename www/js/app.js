@@ -36,6 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  // TODO - remove all the tabs so the bottom tabs may be removed from the app
   // setup an abstract state for the tabs directive
   .state('tab', {
     url: "/tab",
