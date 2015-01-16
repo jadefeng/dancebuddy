@@ -42,7 +42,7 @@ angular.module('starter.controllers', ['ionic'])
   });
 })
 
-.controller('CameraCtrl', function($scope, $cordovaCamera){
+.controller('CameraCtrl', function($scope, $cordovaCamera, $cordovaCapture){
   $scope.takePicture = function() {
         var options = { 
             quality : 50, 
@@ -78,6 +78,32 @@ angular.module('starter.controllers', ['ionic'])
             // An error occured. Show a message to the user
         });
   }  
+
+  ///////////////////////////
+  // Using Cordova Media Capture 
+  $scope.captureVideo = function() {
+    var options = { 
+      limit: 2,
+      duration: 15, 
+      // destinationType: Camera.DestinationType.FILE_URI,
+      // saveToPhotoAlbum: true, 
+    };
+
+    $cordovaCapture.captureVideo(options).then(function(mediaFiles) {
+      // Success! Video data is here
+      
+        $scope.path = mediaFiles[0].fullPath;
+        alert(angular.toJson(mediaFiles[0]));
+        alert($scope.path);
+      
+    }, function(err) {
+      // An error occurred. Show a message to the user
+      alert("There was an error! Oh no.")
+    });
+  }
+
+ 
+
 })
 
 // Settings controller 
