@@ -24,7 +24,7 @@ angular.module('starter.controllers', ['ionic'])
   });
 })
 
-.controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, enhanceModal, Classrooms){
+.controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, enhanceModal, Classrooms, $cordovaCamera, $cordovaCapture){
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   function checkLesson(lesson) {
     // $stateParams.lessonId is a string, not a num
@@ -39,6 +39,14 @@ angular.module('starter.controllers', ['ionic'])
   }).then(function(modal) {
     enhanceModal(modal, 'Video', $scope.lesson.entries);
     $scope.modal = modal;
+    // New function for create video
+    modal.captureVideo = function captureVideo(){
+      $cordovaCapture.captureVideo().then(function(mediaFiles) {
+        // Success! Video data is here
+        var path = mediaFiles[0].fullPath;
+        modal.edit({path: path}); // Opening a new modal, passing in the saved path
+      });
+    }
   });
 })
 
@@ -77,7 +85,7 @@ angular.module('starter.controllers', ['ionic'])
         }, function(err) {
             // An error occured. Show a message to the user
         });
-  }  
+  } 
 
   ///////////////////////////
   // Using Cordova Media Capture 
@@ -85,8 +93,6 @@ angular.module('starter.controllers', ['ionic'])
     var options = { 
       limit: 2,
       duration: 15, 
-      // destinationType: Camera.DestinationType.FILE_URI,
-      // saveToPhotoAlbum: true, 
     };
 
     $cordovaCapture.captureVideo(options).then(function(mediaFiles) {
@@ -96,9 +102,6 @@ angular.module('starter.controllers', ['ionic'])
         alert(angular.toJson(mediaFiles[0]));
         alert($scope.path);
       
-    }, function(err) {
-      // An error occurred. Show a message to the user
-      alert("There was an error! Oh no.")
     });
   }
 

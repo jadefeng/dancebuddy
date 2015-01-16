@@ -4,8 +4,7 @@
     </ion-nav-back-button>
 
     <ion-nav-buttons side="right"> <!-- right -->
-      <a class="header-button" ng-click='modal.create()'><i class="icon ion-plus"></i></a>
-
+      <a class="header-button" ng-click='modal.captureVideo()'><i class="icon ion-camera"></i></a>
     </ion-nav-buttons>
   </ion-nav-bar>
 
@@ -14,9 +13,13 @@
       <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries" type="item-text-wrap"> 
         <h2>{{entry.title}}</h2>
         <p>{{entry.note}}</p>
-        <iframe ng-src="{{'http://player.vimeo.com/video/' + entry.videoId}}"
+<!--         <iframe ng-src="{{'http://player.vimeo.com/video/' + entry.videoId}}"
          style="width:100%; height:70vw"
          frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  
+ -->
+        <video style="width:100%; height:70vw" src="{{entry.path}}" controls>
+          Your browser does not support the video tag.
+        </video>
 
         <i class="icon ion-chevron-right icon-accessory"></i>
 
