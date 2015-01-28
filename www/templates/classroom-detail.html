@@ -11,6 +11,11 @@
 
   <ion-content>
     <ion-list>
+
+      <ion-item>
+         <input type="text" required='true' class="search" placeholder="Search">
+      </ion-item>
+          
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="lesson in classroom.lessons" type="item-text-wrap" href="#/tab/classroom-lesson/{{classroom.id}}/{{lesson.id}}"> 
         <img ng-src="http://cdns2.freepik.com/free-photo/play-button_318-9316.jpg"/>
         <h2>{{lesson.name}}</h2>

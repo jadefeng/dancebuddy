@@ -10,6 +10,11 @@
 
   <ion-content>
     <ion-list>
+
+      <ion-item>
+         <input type="text" required='true' class="search" placeholder="Search">
+      </ion-item>
+
       <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries" type="item-text-wrap"> 
         <h2>{{entry.title}}</h2>
         <p>{{entry.note}}</p>

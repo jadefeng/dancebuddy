@@ -21,8 +21,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
-
+.config(function($ionicConfigProvider, $stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+  // Removing the back description on the back button
+  $ionicConfigProvider.backButton.previousTitleText(false);
+  $ionicConfigProvider.backButton.text(''); 
+  
   $sceDelegateProvider.resourceUrlWhitelist([
     // Allow same origin resource loads.
     'self',

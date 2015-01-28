@@ -10,6 +10,10 @@
     
   <ion-content>
     <ion-list>
+      <ion-item>
+         <input type="text" required='true' class="search" placeholder="Search">
+      </ion-item>
+
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="classroom in classrooms" type="item-text-wrap" href="#/tab/classroom/{{classroom.id}}">
         <img ng-src='http://kaskcreativity.com/wordpress/wp-content/uploads/2013/11/shoedetail-01.png'/>
         <h2>{{classroom.name}}</h2>

@@ -1,12 +1,29 @@
-/* Empty. Add your own CSS if you like */
+/*Navigation + header bar css*/
+.bar.bar-stable {
+  background-color: #47be9d;
+}
+
+.bar.bar-stable .header-item {
+  color: white;
+}
 
 .crud-button {
-	width: 70px;
-	text-align: center;
+  width: 70px;
+  text-align: center;
 }
 
 .header-button {
-	color: #444;
-	font-size: 2em;
-	margin: 10px;
+  font-size: 2em;
+  margin: 10px;
+}
+
+.item-input, input.search {
+  border: 1px solid #BBB7B7;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+input.search {
+  padding: 10px;
+  padding-left: 40px;
 }
