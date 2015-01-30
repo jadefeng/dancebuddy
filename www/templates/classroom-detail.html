@@ -5,7 +5,7 @@
     </ion-nav-back-button>
 
     <ion-nav-buttons side="right"> <!-- right -->
-      <a class="header-button" ng-click='modal.create()'><i class="icon icon ion-plus"></i></a>
+      <button class="header-button" ng-click='modal.create()'><i class="icon icon ion-plus"></i></button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
@@ -13,11 +13,16 @@
     <ion-list>
 
       <ion-item>
-         <input type="text" required='true' class="search" placeholder="Search">
+
+        <div class="input_container">
+          <input type="text" class="search" placeholder="Search" ng-model="ui.query">
+            <img src="img/search-icon.png" class="input_img">
+        </div>
+
       </ion-item>
           
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="lesson in classroom.lessons" type="item-text-wrap" href="#/tab/classroom-lesson/{{classroom.id}}/{{lesson.id}}"> 
-        <img ng-src="http://cdns2.freepik.com/free-photo/play-button_318-9316.jpg"/>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="lesson in classroom.lessons | filter: ui.query" type="item-text-wrap" href="#/tab/classroom-lesson/{{classroom.id}}/{{lesson.id}}"> 
+        <img ng-src="img/buddy-icon.png"/>
         <h2>{{lesson.name}}</h2>
         <i class="icon ion-chevron-right icon-accessory"></i>
 

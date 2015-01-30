@@ -4,6 +4,7 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('ClassroomsCtrl', function($scope, $ionicModal, enhanceModal, Classrooms) {
   $scope.classrooms = Classrooms.all();
+  $scope.ui = {};
   $ionicModal.fromTemplateUrl('templates/classroom-new.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -15,6 +16,7 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('ClassroomDetailCtrl', function($scope, $ionicModal, $stateParams, enhanceModal, Classrooms) {
   $scope.classroom = Classrooms.get($stateParams.classroomId);
+  $scope.ui = {};
   $ionicModal.fromTemplateUrl('templates/lesson-new.html', {
     scope: $scope,
     animation: 'slide-in-up'
@@ -26,6 +28,7 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, enhanceModal, Classrooms, $cordovaCamera, $cordovaCapture){
   $scope.classroom = Classrooms.get($stateParams.classroomId);
+  $scope.ui = {};
   function checkLesson(lesson) {
     // $stateParams.lessonId is a string, not a num
     return lesson.id == $stateParams.lessonId;
@@ -85,6 +88,7 @@ angular.module('starter.controllers', ['ionic'])
         }, function(err) {
             // An error occured. Show a message to the user
         });
+
   } 
 
   ///////////////////////////

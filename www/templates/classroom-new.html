@@ -1,32 +1,35 @@
 <ion-modal-view>
-  <ion-header-bar>
+  <ion-header-bar class="bar-stable">
     <h1 class="title">{{modal.title}}</h1>
 
-    <a ng-click='modal.close()' class="header-button">
-      <i class="icon ion-close-round"></i>
-    </a>
+    <button ng-click='modal.close()' class="header-button">
+      <i class="icon ion-close-round">
+      </i>
+    </button>
   </ion-header-bar>
 
   <ion-content class="padding">
  	<form name='classroom_form'>
         <div class="list list-inline">
-          <label class="item item-input">
             <input type="text"
                    required='true'
                    ng-model="modal.target.name"
+                   class="input-modal"
                    placeholder="Class Name">
-          </label>
-          <label class="item item-input">
+            </input>
             <input type="text"
                    required='true'
                    ng-model="modal.target.secret"
-            	   placeholder="Secret Key">
-          </label>
+                   class="input-modal"
+            	   placeholder="Secret Key"/>
+            </input>
         </div>  
         <button class="button button-block button-positive"
           type='submit'
           ng-disabled='classroom_form.$invalid'
-          ng-click="modal.submit()">Submit</button>
+          ng-click="modal.submit()">
+          Submit
+        </button>
     </form>
   </ion-content>
 </ion-modal-view>

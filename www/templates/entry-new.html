@@ -1,26 +1,25 @@
 <ion-modal-view>
-  <ion-header-bar>
+  <ion-header-bar class="bar-stable">
     <h1 class="title">{{modal.title}}</h1>
 
-    <a ng-click='modal.close()' class="header-button">
+    <button ng-click='modal.close()' class="header-button">
       <i class="icon ion-close-round"></i>
-    </a>
+    </button>
   </ion-header-bar>
 
   <ion-content class="padding">
   <form name='entry_form'>
-        <div class="list list-inline">
-          <label class="item item-input">
-            <input type="text"
-                   required='true'
-                   ng-model="modal.target.title"
-                   placeholder="Video Title">
-          </label>
-          <label class="item item-input">
-            <textarea ng-model="modal.target.note" placeholder="Comments"
-                style='height: 100px'></textarea>
-          </label>
-        </div>  
+    <div class="list list-inline">
+        <input type="text"
+               required='true'
+               ng-model="modal.target.title"
+               class="input-modal"
+               placeholder="Video Title">
+        <textarea ng-model="modal.target.note" 
+                placeholder="Comments" 
+                class="input-modal">
+        </textarea>
+    </div>
         <button class="button button-block button-positive"
           type='submit'
           ng-disabled='entry_form.$invalid'

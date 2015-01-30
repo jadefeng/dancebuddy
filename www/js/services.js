@@ -21,7 +21,7 @@ angular.module('starter.services', [])
     };
 
     modal.submit = function submit() {
-      if (modal.target.id) {
+      if (modal.target.id != null) { // Allows for modal.target.id = 0
         for (key in modal.target) {
           modal.original[key] = modal.target[key];
         }
