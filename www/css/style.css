@@ -98,3 +98,10 @@ input.search {
     width: auto;
 }
 
+
+.relative-video {
+  width: 100%;
+  height: 70vw;
+  position: relative;
+  z-index: -10;
+}

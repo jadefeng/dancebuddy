@@ -3,15 +3,19 @@ angular.module('starter.services', [])
 .factory('enhanceModal', function($ionicListDelegate) {
   return function enhanceModal(modal, entityName, entities, newEntity) {
     var nextId = entities.length;
+    modal.entryEditing = false;
+
     modal.close = function close() {
       modal.hide();
       delete modal.target;
+      modal.entryEditing = false;      
       $ionicListDelegate.closeOptionButtons();
     };
 
     modal.edit = function edit(entity) {
       modal.target = angular.copy(entity);
       modal.original = entity; // need the original later.
+      modal.entryEditing = true;
       modal.show();
       modal.title = ( angular.isDefined(entity.id) ? 'Edit' : 'New') + ' ' + entityName;
     };

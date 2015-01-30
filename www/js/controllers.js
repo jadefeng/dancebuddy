@@ -26,7 +26,7 @@ angular.module('starter.controllers', ['ionic'])
   });
 })
 
-.controller('LessonDetailCtrl', function($scope, $ionicModal, $stateParams, enhanceModal, Classrooms, $cordovaCamera, $cordovaCapture){
+.controller('LessonDetailCtrl', function($scope, $timeout, $ionicModal, $stateParams, enhanceModal, Classrooms, $cordovaCamera, $cordovaCapture){
   $scope.classroom = Classrooms.get($stateParams.classroomId);
   $scope.ui = {};
   function checkLesson(lesson) {
@@ -47,10 +47,31 @@ angular.module('starter.controllers', ['ionic'])
       $cordovaCapture.captureVideo().then(function(mediaFiles) {
         // Success! Video data is here
         var path = mediaFiles[0].fullPath;
-        modal.edit({path: path}); // Opening a new modal, passing in the saved path
+        // var thumbnail_path = path.replace(/[^\/]*$/, "") + 'image.jpg'
+        // window.PKVideoThumbnail.createThumbnail ( path, thumbnail_path,
+          modal.edit({path: path}); // Opening a new modal, passing in the saved path // , image_path: thumbnail_path
+      // , failure );
       });
     }
   });
+
+  $scope.showVideo = function showVideo(entry) {
+    entry.$showVideo = true;
+
+    $timeout(function waitForVideoElementToBeCreated() {
+      var video = document.getElementsByTagName('video')[0];
+      video.onended = outsideDigestCycle;
+    });
+
+    function outsideDigestCycle(e) {
+      $scope.$apply(insideDigestCycle)
+    }
+
+    function insideDigestCycle() {
+      entry.$showVideo = false;
+    }
+  }
+
 })
 
 .controller('CameraCtrl', function($scope, $cordovaCamera, $cordovaCapture){

@@ -21,16 +21,12 @@
       <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries | filter: ui.query" type="item-text-wrap"> 
         <h2>{{entry.title}}</h2>
         <p>{{entry.note}}</p>
-<!--         <iframe ng-src="{{'http://player.vimeo.com/video/' + entry.videoId}}"
-         style="width:100%; height:70vw"
-         frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  
- -->
-        <div class="relative-video"> <!-- ng-click="select first child.play()" ng-hide="entry-editing" ng-click="video.play()" --> 
-          <video style="width:100%; height:70vw" src="{{entry.path}}" controls disable//>
-            Your browser does not support the video tag.
+
+        <div class="relative-video"> 
+          <video style="width:100%; height:70vw" src="{{entry.path}}" ng-if="entry.$showVideo" autoplay controls/>
+            Your browser does not support the video tag. 
           </video>
-        </div>
-        <div class="absolute-video">
+          <img style="width:100%; height:70vw"  src="img/buddy-icon.png" ng-click="showVideo(entry)" ng-hide="modal.entryEditing || entry.$showVideo">
         </div>
 
         <i class="icon ion-chevron-right icon-accessory"></i>
