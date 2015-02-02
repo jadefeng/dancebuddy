@@ -45,33 +45,37 @@ angular.module('starter.controllers', ['ionic'])
     // New function for create video
     modal.captureVideo = function captureVideo(){
       $cordovaCapture.captureVideo().then(function(mediaFiles) {
-        // Success! Video data is here
         var path = mediaFiles[0].fullPath;
-        // var thumbnail_path = path.replace(/[^\/]*$/, "") + 'image.jpg'
-        // window.PKVideoThumbnail.createThumbnail ( path, thumbnail_path,
-          modal.edit({path: path}); // Opening a new modal, passing in the saved path // , image_path: thumbnail_path
-      // , failure );
+          modal.edit({path: path}); 
       });
     }
   });
 
-  $scope.showVideo = function showVideo(entry) {
-    entry.$showVideo = true;
+  $scope.testVideo = 'http://static.videogular.com/assets/videos/videogular.mp4'
 
-    $timeout(function waitForVideoElementToBeCreated() {
-      var video = document.getElementsByTagName('video')[0];
-      video.onended = outsideDigestCycle;
-    });
+})
 
-    function outsideDigestCycle(e) {
-      $scope.$apply(insideDigestCycle)
-    }
-
-    function insideDigestCycle() {
-      entry.$showVideo = false;
-    }
+.controller('EntryDetailCtrl', function($scope, $ionicModal, $stateParams, enhanceModal, Classrooms) {
+  $scope.classroom = Classrooms.get($stateParams.classroomId);
+  function checkLesson(lesson) {
+    // $stateParams.lessonId is a string, not a num
+    return lesson.id == $stateParams.lessonId;
   }
-
+  function checkEntries(entry) {
+    // $stateParams.lessonId is a string, not a num
+    return entry.id == $stateParams.entryId;
+  }  
+  $scope.lesson = $scope.classroom.lessons.filter(checkLesson)[0];
+  console.log("Lesson ", $scope.lesson)
+  $scope.entry = $scope.lesson.entries.filter(checkEntries)[0];
+  console.log("Entry ", $scope.entry)
+  $ionicModal.fromTemplateUrl('templates/entry-new.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    enhanceModal(modal, 'Video', $scope.lesson.entries);
+    $scope.modal = modal;
+  });
 })
 
 .controller('CameraCtrl', function($scope, $cordovaCamera, $cordovaCapture){

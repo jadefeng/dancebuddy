@@ -105,3 +105,30 @@ input.search {
   position: relative;
   z-index: -10;
 }
+
+.entry-buttons {
+  width: 100vw;
+  position: fixed;
+  text-align: center;
+}
+
+
+.edit-entry {
+  background-color: #e6b400;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  width: 30vw;
+  height: 30px;
+  margin: auto;  
+}
+
+.delete-entry {
+  background-color: #ef473a;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  width: 30vw;
+  height: 30px;  
+  margin: auto;
+}

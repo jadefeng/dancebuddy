@@ -18,16 +18,9 @@
         </div>
       </ion-item>
 
-      <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries | filter: ui.query" type="item-text-wrap"> 
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries | filter: ui.query" type="item-text-wrap" href="#/tab/classroom-entry/{{classroom.id}}/{{lesson.id}}/{{entry.id}}">
         <h2>{{entry.title}}</h2>
         <p>{{entry.note}}</p>
-
-        <div class="relative-video"> 
-          <video style="width:100%; height:70vw" src="{{entry.path}}" ng-if="entry.$showVideo" autoplay controls/>
-            Your browser does not support the video tag. 
-          </video>
-          <img style="width:100%; height:70vw"  src="img/buddy-icon.png" ng-click="showVideo(entry)" ng-hide="modal.entryEditing || entry.$showVideo">
-        </div>
 
         <i class="icon ion-chevron-right icon-accessory"></i>
 

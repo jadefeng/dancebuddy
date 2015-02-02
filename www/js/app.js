@@ -31,6 +31,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     'self',
     // Allow loading from external domains
     'http://player.vimeo.com/**',
+    'http://static.videogular.com/**',
   ]);
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -88,7 +89,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
-
+    .state('tab.entry-detail', {
+      url: '/classroom-entry/:classroomId/:lessonId/:entryId',
+      views: {
+        'tab-classrooms': {
+          templateUrl: 'templates/entry-detail.html',
+          controller: 'EntryDetailCtrl'
+        }
+      }
+    })
     .state('tab.camera', {
       url: '/camera',
       views: {
