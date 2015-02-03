@@ -18,7 +18,8 @@
         </div>
       </ion-item>
 
-      <ion-item class="item-remove-animate item-icon-right" ng-repeat="entry in lesson.entries | filter: ui.query" type="item-text-wrap" href="#/tab/classroom-entry/{{classroom.id}}/{{lesson.id}}/{{entry.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="entry in lesson.entries | filter: ui.query" type="item-text-wrap" href="#/tab/classroom-entry/{{classroom.id}}/{{lesson.id}}/{{entry.id}}">
+        <img ng-src='img/buddy-icon.png'/>
         <h2>{{entry.title}}</h2>
         <p>{{entry.note}}</p>
 
