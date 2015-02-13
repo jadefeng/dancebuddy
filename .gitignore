@@ -5,3 +5,6 @@ node_modules/
 platforms/
 plugins/
 npm-debug.log
+server/node_modules/
+server/public/
+server/views/
