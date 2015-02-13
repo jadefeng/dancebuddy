@@ -1663,7 +1663,7 @@ def RealMain(argv, data=None):
       base = guessed_base
 
   # Added by jaiew
-  devs_email = 'cla+reviews@helixta.com.au'
+  devs_email = 'dance+reviews@helixta.com.au'
   if options.cc:
     if not devs_email in options.cc:
       options.cc = options.cc + ',' + devs_email
